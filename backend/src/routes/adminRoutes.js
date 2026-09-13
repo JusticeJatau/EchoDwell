@@ -1,0 +1,13 @@
+import { Router } from "express";
+import { dashboard, getSettings, listOrganizations, listPendingProperties, reviewOrganization, reviewProperty, updateSettings } from "../controllers/adminController.js";
+import { allowRoles, protect } from "../middleware/auth.js";
+const router = Router();
+router.use(protect, allowRoles("platform_admin"));
+router.get("/dashboard", dashboard);
+router.get("/settings", getSettings);
+router.patch("/settings", updateSettings);
+router.get("/organizations", listOrganizations);
+router.patch("/organizations/:id/review", reviewOrganization);
+router.get("/properties/pending", listPendingProperties);
+router.patch("/properties/:id/review", reviewProperty);
+export default router;

@@ -1,0 +1,1 @@
+import { Router } from "express"; import { listInspections, requestInspection, updateInspection } from "../controllers/inspectionController.js"; import { protect } from "../middleware/auth.js"; const router = Router(); router.use(protect); router.get("/", listInspections); router.post("/", requestInspection); router.patch("/:id", updateInspection); export default router;

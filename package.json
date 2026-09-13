@@ -1,0 +1,15 @@
+{
+  "name": "echodwell",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": ["frontend", "backend"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend",
+    "test": "npm test -w backend",
+    "seed:admin": "npm run seed:admin -w backend",
+    "seed:demo": "npm run seed:demo -w backend"
+  },
+  "devDependencies": { "concurrently": "^9.2.1" }
+}
