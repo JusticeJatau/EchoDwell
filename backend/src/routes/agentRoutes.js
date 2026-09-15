@@ -1,1 +1,23 @@
-import { Router } from "express"; import { inviteAgent, myAuthorizations, respondToAuthorization, revokeAuthorization } from "../controllers/agentController.js"; import { allowRoles, protect } from "../middleware/auth.js"; const router = Router(); router.use(protect); router.get("/authorizations", myAuthorizations); router.post("/invite", allowRoles("owner", "agency_admin"), inviteAgent); router.patch("/authorizations/:id/respond", allowRoles("agent", "agency_agent"), respondToAuthorization); router.patch("/authorizations/:id/revoke", allowRoles("owner", "agency_admin"), revokeAuthorization); export default router;
+import { Router } from "express";
+import {
+  inviteAgent,
+  myAuthorizations,
+  respondToAuthorization,
+  revokeAuthorization,
+} from "../controllers/agentController.js";
+import { allowRoles, protect } from "../middleware/auth.js";
+const router = Router();
+router.use(protect);
+router.get("/authorizations", myAuthorizations);
+router.post("/invite", allowRoles("owner", "agency_admin"), inviteAgent);
+router.patch(
+  "/authorizations/:id/respond",
+  allowRoles("agent", "agency_agent"),
+  respondToAuthorization,
+);
+router.patch(
+  "/authorizations/:id/revoke",
+  allowRoles("owner", "agency_admin"),
+  revokeAuthorization,
+);
+export default router;

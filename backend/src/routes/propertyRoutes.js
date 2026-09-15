@@ -1,11 +1,45 @@
 import { Router } from "express";
-import { createProperty, getProperty, listProperties, myProperties, submitProperty, updateProperty } from "../controllers/propertyController.js";
+import {
+  createProperty,
+  getProperty,
+  listProperties,
+  myProperties,
+  submitProperty,
+  updateProperty,
+} from "../controllers/propertyController.js";
 import { allowRoles, protect } from "../middleware/auth.js";
 const router = Router();
 router.get("/", listProperties);
-router.get("/mine", protect, allowRoles("owner", "agent", "agency_admin", "agency_agent", "platform_admin"), myProperties);
+router.get(
+  "/mine",
+  protect,
+  allowRoles(
+    "owner",
+    "agent",
+    "agency_admin",
+    "agency_agent",
+    "platform_admin",
+  ),
+  myProperties,
+);
 router.get("/:slug", getProperty);
 router.post("/", protect, allowRoles("owner", "agency_admin"), createProperty);
-router.patch("/:id", protect, allowRoles("owner", "agent", "agency_admin", "agency_agent", "platform_admin"), updateProperty);
-router.post("/:id/submit", protect, allowRoles("owner", "agent", "agency_admin", "agency_agent"), submitProperty);
+router.patch(
+  "/:id",
+  protect,
+  allowRoles(
+    "owner",
+    "agent",
+    "agency_admin",
+    "agency_agent",
+    "platform_admin",
+  ),
+  updateProperty,
+);
+router.post(
+  "/:id/submit",
+  protect,
+  allowRoles("owner", "agent", "agency_admin", "agency_agent"),
+  submitProperty,
+);
 export default router;

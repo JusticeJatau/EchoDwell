@@ -1,5 +1,13 @@
 import { Router } from "express";
-import { dashboard, getSettings, listOrganizations, listPendingProperties, reviewOrganization, reviewProperty, updateSettings } from "../controllers/adminController.js";
+import {
+  dashboard,
+  getSettings,
+  listOrganizations,
+  listPendingProperties,
+  reviewOrganization,
+  reviewProperty,
+  updateSettings,
+} from "../controllers/adminController.js";
 import { allowRoles, protect } from "../middleware/auth.js";
 const router = Router();
 router.use(protect, allowRoles("platform_admin"));

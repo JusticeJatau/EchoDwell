@@ -6,10 +6,132 @@ import PropertyCard from "../components/PropertyCard.jsx";
 import Loading from "../components/Loading.jsx";
 
 export default function PropertiesPage() {
-  const [params] = useSearchParams(); const [filters, setFilters] = useState({ search: params.get("search") || "", state: "", city: "", type: "", bedrooms: "" }); const [properties, setProperties] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState(""); const [location, setLocation] = useState(null);
-  const load = async (next = filters, coords = location) => { setLoading(true); setError(""); try { const { data } = await api.get("/properties", { params: { ...next, ...(coords && { lat: coords.latitude, lng: coords.longitude, radiusKm: 100 }) } }); setProperties(data.properties); } catch (err) { setError(err.message); } finally { setLoading(false); } };
-  useEffect(() => { load(filters, null); }, []);
-  const useLocation = () => { if (!navigator.geolocation) return setError("Your browser does not support location search"); setError(""); navigator.geolocation.getCurrentPosition((result) => { const coords = result.coords; setLocation(coords); load(filters, coords); }, (err) => setError(err.code === 1 ? "Location permission was denied. You can still search by area." : "We could not get your current location."), { enableHighAccuracy: true, timeout: 12000, maximumAge: 300000 }); };
-  const submit = (e) => { e.preventDefault(); load(); };
-  return <section className="listing-page"><div className="listing-head"><div><span className="eyebrow">Verified rentals</span><h1>Find homes around you</h1><p>Search by location or allow EchoDwell to sort the closest available properties.</p></div><button className={location ? "location-button active" : "location-button"} onClick={useLocation}><LocateFixed size={18}/>{location ? "Showing nearest homes" : "Use my location"}</button></div><form className="filters" onSubmit={submit}><label className="search-field"><Search/><input value={filters.search} onChange={(e) => setFilters({ ...filters, search: e.target.value })} placeholder="Area, property or landmark"/></label><select value={filters.type} onChange={(e) => setFilters({ ...filters, type: e.target.value })}><option value="">All property types</option><option value="flat">Flat</option><option value="house">House</option><option value="compound">Compound</option><option value="self-contained">Self-contained</option></select><select value={filters.bedrooms} onChange={(e) => setFilters({ ...filters, bedrooms: e.target.value })}><option value="">Any bedrooms</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3+ bedrooms</option></select><button><SlidersHorizontal size={18}/>Apply filters</button></form>{error && <div className="notice error">{error}</div>}{loading ? <Loading/> : properties.length ? <div className="property-grid">{properties.map((property) => <PropertyCard key={property._id} property={property}/>)}</div> : <div className="empty"><h2>No available property found</h2><p>Try a wider location or remove some filters.</p></div>}</section>;
+  const [params] = useSearchParams();
+  const [filters, setFilters] = useState({
+    search: params.get("search") || "",
+    state: "",
+    city: "",
+    type: "",
+    bedrooms: "",
+  });
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [location, setLocation] = useState(null);
+  const load = async (next = filters, coords = location) => {
+    setLoading(true);
+    setError("");
+    try {
+      const { data } = await api.get("/properties", {
+        params: {
+          ...next,
+          ...(coords && {
+            lat: coords.latitude,
+            lng: coords.longitude,
+            radiusKm: 100,
+          }),
+        },
+      });
+      setProperties(data.properties);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    load(filters, null);
+  }, []);
+  const useLocation = () => {
+    if (!navigator.geolocation)
+      return setError("Your browser does not support location search");
+    setError("");
+    navigator.geolocation.getCurrentPosition(
+      (result) => {
+        const coords = result.coords;
+        setLocation(coords);
+        load(filters, coords);
+      },
+      (err) =>
+        setError(
+          err.code === 1
+            ? "Location permission was denied. You can still search by area."
+            : "We could not get your current location.",
+        ),
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 300000 },
+    );
+  };
+  const submit = (e) => {
+    e.preventDefault();
+    load();
+  };
+  return (
+    <section className="listing-page">
+      <div className="listing-head">
+        <div>
+          <span className="eyebrow">Verified rentals</span>
+          <h1>Find homes around you</h1>
+          <p>
+            Search by location or allow EchoDwell to sort the closest available
+            properties.
+          </p>
+        </div>
+        <button
+          className={location ? "location-button active" : "location-button"}
+          onClick={useLocation}
+        >
+          <LocateFixed size={18} />
+          {location ? "Showing nearest homes" : "Use my location"}
+        </button>
+      </div>
+      <form className="filters" onSubmit={submit}>
+        <label className="search-field">
+          <Search />
+          <input
+            value={filters.search}
+            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+            placeholder="Area, property or landmark"
+          />
+        </label>
+        <select
+          value={filters.type}
+          onChange={(e) => setFilters({ ...filters, type: e.target.value })}
+        >
+          <option value="">All property types</option>
+          <option value="flat">Flat</option>
+          <option value="house">House</option>
+          <option value="compound">Compound</option>
+          <option value="self-contained">Self-contained</option>
+        </select>
+        <select
+          value={filters.bedrooms}
+          onChange={(e) => setFilters({ ...filters, bedrooms: e.target.value })}
+        >
+          <option value="">Any bedrooms</option>
+          <option value="1">1 bedroom</option>
+          <option value="2">2 bedrooms</option>
+          <option value="3">3+ bedrooms</option>
+        </select>
+        <button>
+          <SlidersHorizontal size={18} />
+          Apply filters
+        </button>
+      </form>
+      {error && <div className="notice error">{error}</div>}
+      {loading ? (
+        <Loading />
+      ) : properties.length ? (
+        <div className="property-grid">
+          {properties.map((property) => (
+            <PropertyCard key={property._id} property={property} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          <h2>No available property found</h2>
+          <p>Try a wider location or remove some filters.</p>
+        </div>
+      )}
+    </section>
+  );
 }

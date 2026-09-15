@@ -748,3 +748,450 @@ footer {
   color: var(--muted);
   font-size: 0.83rem;
 }
+.home-section,
+.owner-section,
+.process-section,
+.home-cta {
+  padding: 90px max(5vw, 24px);
+}
+.section-heading {
+  max-width: 720px;
+}
+.section-heading h2,
+.owner-copy h2,
+.home-cta h2 {
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  margin: 14px 0;
+}
+.section-heading p,
+.owner-copy p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+.feature-grid article {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 26px;
+  border-radius: 18px;
+}
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--mint);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+}
+.feature-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+.owner-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7vw;
+  align-items: center;
+  background: #eef6f1;
+}
+.owner-image {
+  height: 520px;
+}
+.owner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px 80px 24px 24px;
+}
+.owner-copy ul {
+  padding: 0;
+  list-style: none;
+  margin: 28px 0;
+  display: grid;
+  gap: 13px;
+}
+.owner-copy li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+.owner-copy li svg {
+  color: var(--green);
+}
+.process-section .section-heading {
+  text-align: center;
+  margin: auto;
+}
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 42px;
+}
+.process-track article {
+  position: relative;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 24px;
+  border-radius: 16px;
+  display: grid;
+  gap: 18px;
+}
+.process-track article > span {
+  color: #a9b9b0;
+  font-weight: 800;
+}
+.process-track svg {
+  color: var(--green);
+}
+.home-cta {
+  margin: 0 max(5vw, 24px) 90px;
+  border-radius: 26px;
+  background: var(--dark);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.home-cta .eyebrow {
+  color: #8ee2bc;
+}
+.home-cta > div:last-child {
+  display: flex;
+  gap: 10px;
+}
+.button.light {
+  background: white;
+  color: var(--dark);
+}
+.button.outline {
+  background: transparent;
+  border: 1px solid #ffffff70;
+}
+.admin-login-page {
+  min-height: 100vh;
+  background: #071b14;
+  display: grid;
+  place-items: center;
+  padding: 80px 20px;
+  position: relative;
+}
+.admin-login-brand {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.admin-login-brand > span {
+  font-size: 0.8rem;
+  color: #a9c1b7;
+  border-left: 1px solid #ffffff30;
+  padding-left: 18px;
+}
+.admin-login-card {
+  width: min(430px, 100%);
+  background: white;
+  padding: 34px;
+  border-radius: 20px;
+}
+.admin-login-card h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.05em;
+  margin: 12px 0;
+}
+.admin-login-card > p {
+  color: var(--muted);
+}
+.admin-login-card label,
+.property-form label {
+  display: grid;
+  gap: 7px;
+  margin: 15px 0;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+.admin-login-card input,
+.property-form input,
+.property-form select,
+.property-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 13px;
+  background: white;
+}
+.admin-login-card > button {
+  width: 100%;
+  margin-top: 8px;
+}
+.admin-shield {
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.admin-shell {
+  min-height: 100vh;
+  background: #f5f7f6;
+  padding-left: 250px;
+}
+.admin-sidebar {
+  width: 250px;
+  position: fixed;
+  inset: 0 auto 0 0;
+  background: #0a2119;
+  color: white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.admin-sidebar .logo {
+  margin-bottom: 34px;
+}
+.admin-label {
+  color: #91aca0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.admin-sidebar nav {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+}
+.admin-sidebar nav a,
+.admin-sidebar > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 9px;
+  color: #bcd0c7;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+.admin-sidebar nav a.active {
+  background: #194332;
+  color: white;
+}
+.admin-sidebar > button {
+  margin-top: auto;
+}
+.admin-content {
+  max-width: none;
+}
+.billing-page {
+  padding: 70px 24px 100px;
+  max-width: 940px;
+  margin: auto;
+}
+.billing-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
+.billing-intro h1 {
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin: 16px 0;
+}
+.billing-intro p {
+  color: var(--muted);
+}
+.billing-card {
+  max-width: 570px;
+  margin: 35px auto 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 24px 70px #15382416;
+}
+.billing-card-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.billing-card-head svg {
+  color: var(--green);
+}
+.billing-card-head div {
+  display: grid;
+}
+.billing-card-head span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.billing-cycle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 24px 0;
+}
+.billing-cycle button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px;
+  background: white;
+}
+.billing-cycle button.selected {
+  background: var(--mint);
+  border-color: var(--green);
+  color: var(--dark);
+  font-weight: 700;
+}
+.billing-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  border-block: 1px solid var(--line);
+}
+.billing-total strong {
+  font-size: 1.8rem;
+  color: var(--green);
+}
+.billing-card ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.billing-card li {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: var(--muted);
+}
+.billing-card li svg {
+  width: 18px;
+  color: var(--green);
+}
+.billing-card > button {
+  width: 100%;
+  margin-top: 10px;
+}
+.billing-card > small {
+  display: block;
+  text-align: center;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.billing-page .notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 570px;
+  margin: 24px auto;
+}
+.property-form {
+  display: grid;
+  gap: 16px;
+  max-width: 900px;
+}
+.form-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+}
+.form-card h2 {
+  margin-top: 0;
+}
+.form-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.property-form textarea {
+  resize: vertical;
+}
+.property-form > button {
+  justify-self: start;
+}
+@media (max-width: 900px) {
+  .feature-grid,
+  .owner-section,
+  .process-track {
+    grid-template-columns: 1fr 1fr;
+  }
+  .owner-image {
+    height: 420px;
+  }
+  .admin-shell {
+    padding-left: 0;
+  }
+  .admin-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .admin-sidebar .logo {
+    margin: 0;
+  }
+  .admin-sidebar .admin-label,
+  .admin-sidebar nav {
+    display: none;
+  }
+  .admin-sidebar > button {
+    margin: 0 0 0 auto;
+  }
+  .home-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .home-section,
+  .owner-section,
+  .process-section,
+  .home-cta {
+    padding: 60px 20px;
+  }
+  .home-cta {
+    margin: 0 16px 60px;
+  }
+  .feature-grid,
+  .owner-section,
+  .process-track {
+    grid-template-columns: 1fr;
+  }
+  .home-cta > div:last-child {
+    width: 100%;
+    flex-direction: column;
+  }
+  .owner-image {
+    height: 340px;
+  }
+  .admin-login-brand {
+    left: 20px;
+    top: 20px;
+  }
+  .admin-login-brand > span {
+    display: none;
+  }
+  .form-card-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,7 +1,12 @@
 import { Router } from "express";
-import { initializePayment, verifyPayment } from "../controllers/billingController.js";
+import {
+  getBillingDetails,
+  initializePayment,
+  verifyPayment,
+} from "../controllers/billingController.js";
 import { protect } from "../middleware/auth.js";
 const router = Router();
+router.get("/details", protect, getBillingDetails);
 router.post("/initialize", protect, initializePayment);
 router.get("/verify/:reference", protect, verifyPayment);
 export default router;

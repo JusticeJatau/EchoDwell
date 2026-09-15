@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 
 export const createToken = (userId) =>
-  jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || "7d" });
+  jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  });
 
 export function sendAuth(res, user, statusCode = 200) {
   const token = createToken(user._id);

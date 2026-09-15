@@ -16,14 +16,40 @@ import { errorHandler, notFound } from "./middleware/error.js";
 
 const app = express();
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL?.split(",") || "http://localhost:5173", credentials: true }));
-app.post("/api/billing/webhook", express.raw({ type: "application/json", verify: (req, _res, buffer) => { req.rawBody = buffer; } }), (req, res, next) => { req.body = JSON.parse(req.rawBody.toString()); webhook(req, res, next); });
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL?.split(",") || "http://localhost:5173",
+    credentials: true,
+  }),
+);
+app.post(
+  "/api/billing/webhook",
+  express.raw({
+    type: "application/json",
+    verify: (req, _res, buffer) => {
+      req.rawBody = buffer;
+    },
+  }),
+  (req, res, next) => {
+    req.body = JSON.parse(req.rawBody.toString());
+    webhook(req, res, next);
+  },
+);
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
-app.use("/api", rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: "draft-8" }));
-app.get("/api/health", (_req, res) => res.json({ status: "ok", name: "EchoDwell API" }));
+app.use(
+  "/api",
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 300,
+    standardHeaders: "draft-8",
+  }),
+);
+app.get("/api/health", (_req, res) =>
+  res.json({ status: "ok", name: "EchoDwell API" }),
+);
 app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/billing", billingRoutes);

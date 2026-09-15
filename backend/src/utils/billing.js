@@ -13,6 +13,10 @@ export const addMonths = (date, months) => {
 export function getBillingStatus(subscription, now = new Date()) {
   if (!subscription?.currentPeriodEnd) return "pending_payment";
   if (now <= new Date(subscription.currentPeriodEnd)) return "active";
-  if (subscription.gracePeriodEndsAt && now <= new Date(subscription.gracePeriodEndsAt)) return "grace_period";
+  if (
+    subscription.gracePeriodEndsAt &&
+    now <= new Date(subscription.gracePeriodEndsAt)
+  )
+    return "grace_period";
   return "restricted";
 }

@@ -67,6 +67,9 @@
 - `frontend/src/components/Logo.jsx`
 - `frontend/src/components/PropertyCard.jsx`
 - `frontend/src/pages/AdminPage.jsx`
+- `frontend/src/pages/AdminLoginPage.jsx`
+- `frontend/src/pages/ActivationPage.jsx`
+- `frontend/src/pages/AddPropertyPage.jsx`
 - `frontend/src/pages/DashboardPage.jsx`
 - `frontend/src/pages/HomePage.jsx`
 - `frontend/src/pages/LoginPage.jsx`
